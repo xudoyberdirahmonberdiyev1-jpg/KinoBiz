@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KinoBiz - Birgalikda tomosha</title>
+    <style>
+        body { 
+            background-color: #0a0a0a; 
+            color: white; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 10px; 
+            text-align: center; 
+        }
+        .container { max-width: 800px; margin: auto; }
+        h1 { color: #e50914; margin-bottom: 10px; }
+        
+        /* Video uslubi */
+        .video-box { 
+            width: 100%; 
+            border: 2px solid #333; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            background: #000;
+        }
+        video { width: 100%; display: block; }
+
+        /* Chat uslubi */
+        .chat-area { 
+            background: #141414; 
+            margin-top: 20px; 
+            padding: 15px; 
+            border-radius: 10px; 
+            border: 1px solid #333;
+        }
+        #messages { 
+            height: 150px; 
+            overflow-y: auto; 
+            text-align: left; 
+            border-bottom: 1px solid #333; 
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+        .msg { margin-bottom: 5px; font-size: 14px; }
+        .msg b { color: #e50914; }
+
+        input { 
+            width: 70%; 
+            padding: 10px; 
+            border-radius: 5px; 
+            border: none; 
+            outline: none;
+        }
+        button { 
+            background: #e50914; 
+            color: white; 
+            border: none; 
+            padding: 10px 15px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🍿 KinoBiz</h1>
+    
+    <div class="video-box">
+        <video id="mainVideo" controls>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Brauzeringiz videoni qo'llab-quvvatlamaydi.
+        </video>
+    </div>
+
+    <div class="chat-area">
+        <div id="messages">
+            <div class="msg"><b>Tizim:</b> Kinoteatrga xush kelibsiz!</div>
+        </div>
+        <input type="text" id="chatInput" placeholder="Xabar yozing...">
+        <button onclick="sendMessage()">Yuborish</button>
+    </div>
+</div>
+
+<script>
+    function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const messages = document.getElementById('messages');
+        if (input.value.trim() !== "") {
+            const newMsg = document.createElement('div');
+            newMsg.className = 'msg';
+            newMsg.innerHTML = `<b>Siz:</b> ${input.value}`;
+            messages.appendChild(newMsg);
+            messages.scrollTop = messages.scrollHeight;
+            input.value = "";
+        }
+    }
+    
+    // Klaviaturada Enter bosilganda ham xabar ketsin
+    document.getElementById('chatInput').addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    });
+</script>
+
+</body>
+</html>
